@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estiloscalendario.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="contenedor">
+
+        <div id="encabezado">
+
+            <div id="espacioMes"></div>
+
+            <div>
+
+                <button id="botonAtras">Atras</button>
+                <button id="botonSiguiente">Siguiente</button>
+
+            </div>
+
+        </div>
+
+        <div id="dias">
+
+            <div>Domingo</div>
+            <div>Lunes</div>
+            <div>Martes</div>
+            <div>Miercoles</div>
+            <div>Jueves</div>
+            <div>Viernes</div>
+            <div>Sabado</div>
+
+        </div>
+
+        <div id="calendario"></div>
+
+    </div>
+
+
+    <div id="nuevoEventoModal">
+
+        <h2>Nuevo Evento</h2>
+
+        <input type="text" id="tituloEvento" placeholder="Titulo Del Evento" class="inputsEventos">
+
+        <select id="horaEvento" class="inputsEventos"></select>
+
+        <textarea id="descripcion" placeholder="Descripcion" class="inputTextarea"></textarea>
+        <input id="participantes" type="text" placeholder="participantes" class="inputsEventos">
+
+        <button id="botonGuardar">Guardar</button>
+        <button id="botonCancelar">Cancelar</button>
+
+
+    </div>
+
+    <div id="eliminarEventoModal">
+        <h2>Evento</h2>
+
+
+        <input type="text" id="textoTituloEvento" placeholder="Titulo Del Evento" class="inputsEventos" readonly>
+        <input type="text" id="textoHoraEvento" placeholder="Hora del Evento" class="inputsEventos" readonly>
+        <textarea id="textoDescripcion" placeholder="Descripcion" class="inputTextarea" readonly></textarea>
+        <input id="textoParticipantes" type="text" placeholder="participantes" class="inputsEventos" readonly>
+
+
+        <button id="botonElimiar">Eliminar</button>
+        <button id="botonCerrar">Cerrar</button>
+    </div>
+
+
+    <div id="ventanaFlotante"></div>
+
+
+    <script>
+        let selectHora = document.getElementById('horaEvento');
+        selectHora.innerHTML = '<option>Seleccionar Hora</option>';
+        for (let i = 0; i < 24; i++) {
+            for (let j = 0; j < 60; j += 30) {
+                let hora = i;
+                let minutos = j;
+                let amPm = 'AM';
+                if (i > 12) {
+                    hora = i - 12;
+                    amPm = 'PM';
+                }
+                if (i == 0) {
+                    hora = 12;
+                }
+                if (j == 0) {
+                    minutos = '00';
+                }
+                selectHora.innerHTML += `<option>${hora}:${minutos} ${amPm}</option>`;
+            }
+        }
+    </script>
+
+    <script src="js/calendario.js"></script>
+
+</body>
+
+</html>
